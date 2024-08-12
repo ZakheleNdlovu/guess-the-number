@@ -10,7 +10,11 @@
     <div class="frame">
         <h1 id="title">Number Guessing Game</h1>
         <br>
-        <div class="box" id="box">?</div>
+        <div class="box" id="box">
+            <div class="box" id="box1"></div>
+            <img src="dice.png" alt="image" id="mbox">
+            
+        </div>
         
         <h4>Guess the secret number between 1 and 10</h4>
         <br>
@@ -28,11 +32,13 @@
     </div>
     <script>
         let box = document.getElementById("box");
+        let box1 = document.getElementById("box1");
         let guess = document.getElementById("input");
         let results = document.getElementById("results");
         let submit = document.getElementById("submit");
         let attempts = document.getElementById("attempts");
         let play_again = document.getElementById("play_again");
+        let mbox = document.getElementById("mbox");
         let secret_number = Math.ceil(Math.random()*10);
         let comp = 0;
 
@@ -47,7 +53,9 @@
                 if (user_guess == secret_number){
                     results.style.color = "green";
                     results.innerHTML = "You Guess correctly, You Win 😀";
-                    box.innerHTML = secret_number;
+                    mbox.style.display = "none";
+                    box1.style.display = "flex";
+                    box1.textContent = secret_number;
                     submit.style.display = "none";
                     play_again.style.display = "flex";
                     attempts.innerHTML = `You finished in ${comp} attempt(s)`;
@@ -104,9 +112,10 @@
             submit.style.display = "flex";
             play_again.style.display = "none";
             results.innerHTML = "...";
-            attempts.innerHTML = "Attempts: 0"
-            box.textContent = "?";
-
+            attempts.innerHTML = "Attempts: 0";
+            box1.style.display = "none";
+            mbox.style.display = "flex";
+            comp = 0;
         })
 
         
